@@ -1,0 +1,23 @@
+name: Armbian Kernel CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Rebuild Armbian and Kernel
+      # You may pin to the exact commit or the version.
+      # uses: ophub/amlogic-s9xxx-armbian@489101da2de0216573c52162aa2287bd2b480ad3
+      - uses: ophub/amlogic-s9xxx-armbian@main
+        with:
+            # Select build target: armbian / kernel
+            build_target: kernel
+            kernel_source: unifreq
+            kernel_version: 6.1.1
+            kernel_auto: true
+            kernel_sign: -cdxjcl
